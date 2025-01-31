@@ -12,12 +12,12 @@ export default function Room() {
     })
 
     return (
-        <primitive position={[0, -3, 2.6]} object={scene}>
+        <primitive position={[0, -2.5, 2.6]} object={scene}>
             <Html
                 transform
                 wrapperClass="htmlScreen"
                 distanceFactor={0.65}
-                position={[positionX, 2.7, -3.5]}
+                position={[positionX, 2.693, -3.5]}
             >
                 <iframe src="https://bruno-simon.com/" />
             </Html>

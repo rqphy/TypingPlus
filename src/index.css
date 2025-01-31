@@ -1,8 +1,15 @@
 #root {
-	width: 100vw;
-	height: 100vh;
+    width: 100vw;
+    height: 100vh;
 }
 
 body {
-	margin: 0;
+    margin: 0;
+}
+
+.htmlScreen iframe {
+    width: 1185px;
+    height: 670px;
+    border: none;
+    baclground-color: #000;
 }

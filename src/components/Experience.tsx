@@ -16,11 +16,7 @@ export default function Experience() {
                     castShadow
                 />
                 <ambientLight />
-                {/* <Room /> */}
-                <mesh rotation={[-Math.PI * 0.5, 0, 0]} scale={2} receiveShadow>
-                    <circleGeometry />
-                    <meshStandardMaterial />
-                </mesh>
+                <Room />
                 <Keyboard />
             </Canvas>
         </>

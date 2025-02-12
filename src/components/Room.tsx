@@ -1,6 +1,7 @@
 import { useGLTF } from "@react-three/drei"
 import { Html, useTexture } from "@react-three/drei"
 import { useControls } from "leva"
+import Typing from "./Typing"
 
 export default function Room() {
 	const { nodes } = useGLTF("/models/room/room.glb")
@@ -15,7 +16,7 @@ export default function Room() {
 	// })
 
 	return (
-		<mesh geometry={nodes.baked.geometry} position={[0, -1, -0.8]}>
+		<mesh geometry={(nodes.baked as any).geometry} position={[0, -1, -0.8]}>
 			<meshBasicMaterial map={bakedTexture} />
 			<Html
 				transform
@@ -24,11 +25,8 @@ export default function Room() {
 				position={[0, 1.09, -0.53]}
 				// position={[positionX, positionY, positionZ]}
 			>
-				<iframe src="https://bruno-simon.com/" />
+				<Typing />
 			</Html>
 		</mesh>
-		// <primitive position={[0, -2.5, 2.6]} object={scene}>
-
-		// </primitive>
 	)
 }

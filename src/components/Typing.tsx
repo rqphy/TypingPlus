@@ -87,12 +87,16 @@ export default function Typing() {
                 setCurrentIndex((prev) => prev - 1)
             } else {
                 const isCorrect = event.key === letters[currentIndex].char
+                const isSpace = letters[currentIndex].char === " "
 
                 newLetters[currentIndex] = {
                     ...newLetters[currentIndex],
                     state: isCorrect ? "correct" : "incorrect",
                 }
-                setCurrentIndex((prev) => prev + 1)
+
+                if (!isSpace || (isSpace && isCorrect)) {
+                    setCurrentIndex((prev) => prev + 1)
+                }
             }
 
             setLetters(newLetters)

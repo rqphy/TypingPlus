@@ -30,6 +30,7 @@ export default function Typing() {
             const newLetters = [...letters]
 
             if (event.key === "Backspace") {
+                if (currentIndex === 0) return
                 newLetters[currentIndex - 1] = {
                     ...newLetters[currentIndex - 1],
                     state: "untouched",

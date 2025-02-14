@@ -1,13 +1,20 @@
 import { useState, useEffect } from "react"
+import wordsData from "../data/words.json"
 
 interface LetterState {
     char: string
     state: "untouched" | "correct" | "incorrect"
 }
 
-const words: string[] = ["hello", "world", "typing", "test", "practice"]
+const words: string[] = wordsData.words
+
+function getRandomWords(wordPool: string[], count: number): string[] {
+    const shuffled = [...wordPool].sort(() => 0.5 - Math.random())
+    return shuffled.slice(0, count)
+}
 
 export default function Typing() {
+    const [words] = useState(() => getRandomWords(wordsData.words, 20))
     const [letters, setLetters] = useState<LetterState[]>([])
     const [currentIndex, setCurrentIndex] = useState(0)
     const [correctWords, setCorrectWords] = useState(0)
@@ -110,21 +117,22 @@ export default function Typing() {
                 boxShadow: "0 0 10px rgba(0,0,0,0.1)",
             }}
         >
-            {letters.map((letter, index) => (
-                <span
-                    key={index}
-                    style={{
-                        color:
-                            letter.state === "correct"
-                                ? "green"
-                                : letter.state === "incorrect"
-                                ? "red"
-                                : "black",
-                    }}
-                >
-                    {letter.char}
-                </span>
-            ))}
+            {!isCompleted &&
+                letters.map((letter, index) => (
+                    <span
+                        key={index}
+                        style={{
+                            color:
+                                letter.state === "correct"
+                                    ? "green"
+                                    : letter.state === "incorrect"
+                                    ? "red"
+                                    : "black",
+                        }}
+                    >
+                        {letter.char}
+                    </span>
+                ))}
 
             {isCompleted && (
                 <div style={{ marginTop: "20px" }}>
@@ -137,6 +145,15 @@ export default function Typing() {
                         {((correctWords / words.length) * 100).toFixed(1)}%
                     </p>
                     <p>Speed: {wpm} WPM</p>
+                    <p
+                        style={{
+                            marginTop: "15px",
+                            fontSize: "16px",
+                            color: "#666",
+                        }}
+                    >
+                        Press Tab + Enter to restart
+                    </p>
                 </div>
             )}
         </div>

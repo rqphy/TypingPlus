@@ -107,20 +107,7 @@ export default function Typing() {
     }, [currentIndex, letters, startTime])
 
     return (
-        <div
-            style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                fontSize: "24px",
-                fontFamily: "monospace",
-                backgroundColor: "white",
-                padding: "20px",
-                borderRadius: "10px",
-                boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-            }}
-        >
+        <div className="typing__quiz">
             {!isCompleted &&
                 letters.map((letter, index) => (
                     <span

@@ -4,8 +4,8 @@ import Typing from "./components/Typing"
 function App() {
     return (
         <>
-            {/* <Experience /> */}
-            <Typing />
+            <Experience />
+            {/* <Typing /> */}
         </>
     )
 }

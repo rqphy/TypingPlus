@@ -7,9 +7,24 @@ body {
     margin: 0;
 }
 
-.htmlScreen iframe {
+.htmlScreen .typing {
     width: 1185px;
     height: 670px;
     border: none;
-    baclground-color: #000;
+    /* baclground-color: #000; */
+    background-color: white;
+}
+
+.htmlScreen .typing .typing__quiz {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    transform: translate(-50%, -50%);
+    font-size: 28px;
+    font-family: monospace;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

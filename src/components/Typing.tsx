@@ -10,6 +10,8 @@ const words: string[] = ["hello", "world", "typing", "test", "practice"]
 export default function Typing() {
     const [letters, setLetters] = useState<LetterState[]>([])
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [correctWords, setCorrectWords] = useState(0)
+    const [isCompleted, setIsCompleted] = useState(false)
 
     useEffect(() => {
         // Initialize letters array from words
@@ -22,6 +24,34 @@ export default function Typing() {
             }))
         setLetters(initialLetters as LetterState[])
     }, [])
+
+    const checkWordAccuracy = (wordStart: number, wordEnd: number) => {
+        for (let i = wordStart; i < wordEnd; i++) {
+            if (letters[i].state !== "correct") return false
+        }
+        return true
+    }
+
+    useEffect(() => {
+        console.log(currentIndex, letters.length)
+        if (currentIndex >= letters.length && letters.length > 0) {
+            console.log("COMPLETED")
+            setIsCompleted(true)
+            let wordStart = 0
+            let correctCount = 0
+
+            // Count correct words
+            words.forEach((word) => {
+                const wordLength = word.length
+                if (checkWordAccuracy(wordStart, wordStart + wordLength)) {
+                    correctCount++
+                }
+                wordStart += wordLength + 1 // +1 for space
+            })
+
+            setCorrectWords(correctCount)
+        }
+    }, [currentIndex, letters])
 
     useEffect(() => {
         const handleKeyPress = (event: KeyboardEvent) => {
@@ -83,6 +113,19 @@ export default function Typing() {
                     {letter.char}
                 </span>
             ))}
+
+            {isCompleted && (
+                <div style={{ marginTop: "20px" }}>
+                    <p>Test completed!</p>
+                    <p>
+                        Correct words: {correctWords} / {words.length}
+                    </p>
+                    <p>
+                        Accuracy:{" "}
+                        {((correctWords / words.length) * 100).toFixed(1)}%
+                    </p>
+                </div>
+            )}
         </div>
     )
 }

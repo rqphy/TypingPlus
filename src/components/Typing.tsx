@@ -12,6 +12,8 @@ export default function Typing() {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [correctWords, setCorrectWords] = useState(0)
     const [isCompleted, setIsCompleted] = useState(false)
+    const [startTime, setStartTime] = useState<number | null>(null)
+    const [wpm, setWpm] = useState<number>(0)
 
     useEffect(() => {
         // Initialize letters array from words
@@ -33,9 +35,7 @@ export default function Typing() {
     }
 
     useEffect(() => {
-        console.log(currentIndex, letters.length)
         if (currentIndex >= letters.length && letters.length > 0) {
-            console.log("COMPLETED")
             setIsCompleted(true)
             let wordStart = 0
             let correctCount = 0
@@ -46,16 +46,28 @@ export default function Typing() {
                 if (checkWordAccuracy(wordStart, wordStart + wordLength)) {
                     correctCount++
                 }
-                wordStart += wordLength + 1 // +1 for space
+                wordStart += wordLength + 1
             })
+
+            // Calculate WPM
+            if (startTime) {
+                const timeInMinutes = (Date.now() - startTime) / 60000
+                const wordsTyped = letters.length / 5 // Standard: 5 characters = 1 word
+                setWpm(Math.round(wordsTyped / timeInMinutes))
+            }
 
             setCorrectWords(correctCount)
         }
-    }, [currentIndex, letters])
+    }, [currentIndex, letters, startTime])
 
     useEffect(() => {
         const handleKeyPress = (event: KeyboardEvent) => {
             if (currentIndex >= letters.length) return
+
+            // Start timer on first keypress
+            if (currentIndex === 0 && startTime === null) {
+                setStartTime(Date.now())
+            }
 
             const newLetters = [...letters]
 
@@ -81,7 +93,7 @@ export default function Typing() {
 
         window.addEventListener("keydown", handleKeyPress)
         return () => window.removeEventListener("keydown", handleKeyPress)
-    }, [currentIndex, letters])
+    }, [currentIndex, letters, startTime])
 
     return (
         <div
@@ -124,6 +136,7 @@ export default function Typing() {
                         Accuracy:{" "}
                         {((correctWords / words.length) * 100).toFixed(1)}%
                     </p>
+                    <p>Speed: {wpm} WPM</p>
                 </div>
             )}
         </div>

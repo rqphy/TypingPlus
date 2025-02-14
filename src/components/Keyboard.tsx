@@ -49,10 +49,8 @@ export default function Keyboard() {
         const handleKeyDown = (event: KeyboardEvent) => {
             const key = event.key.toLowerCase()
             const animationName = keymap[key as keyof typeof keymap]
-            console.log(key, animationName, actions)
 
             if (animationName && actions[animationName]) {
-                console.log("pkay")
                 actions[animationName]
                     ?.setLoop(THREE.LoopOnce, 0)
                     .reset()

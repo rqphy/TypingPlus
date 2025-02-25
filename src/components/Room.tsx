@@ -1,6 +1,5 @@
 import { useGLTF } from "@react-three/drei"
 import { Html, useTexture } from "@react-three/drei"
-import { useControls } from "leva"
 import Typing from "./Typing"
 
 export default function Room() {

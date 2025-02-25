@@ -2,8 +2,6 @@ import { Canvas } from "@react-three/fiber"
 import { OrbitControls } from "@react-three/drei"
 import Room from "./Room"
 import Keyboard from "./Keyboard"
-import Typing from "./Typing"
-import * as THREE from "three"
 
 export default function Experience() {
 	return (

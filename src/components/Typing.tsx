@@ -6,8 +6,6 @@ interface LetterState {
     state: "untouched" | "correct" | "incorrect"
 }
 
-const words: string[] = wordsData.words
-
 function getRandomWords(wordPool: string[], count: number): string[] {
     const shuffled = [...wordPool].sort(() => 0.5 - Math.random())
     return shuffled.slice(0, count)

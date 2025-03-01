@@ -64,7 +64,7 @@ export default function Keyboard() {
 
     return (
         <primitive
-            position={[0.004, -0.68, -0.22]}
+            position={[0.004, -0.696, -0.26]}
             scale={0.16}
             object={scene}
         />

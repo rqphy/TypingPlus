@@ -62,5 +62,11 @@ export default function Keyboard() {
         return () => window.removeEventListener("keydown", handleKeyDown)
     }, [actions, keymap])
 
-    return <primitive position={[0, -0.7, -0.3]} scale={0.2} object={scene} />
+    return (
+        <primitive
+            position={[0.004, -0.68, -0.22]}
+            scale={0.16}
+            object={scene}
+        />
+    )
 }

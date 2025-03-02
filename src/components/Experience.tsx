@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber"
-import { OrbitControls } from "@react-three/drei"
+import { OrbitControls, Sky } from "@react-three/drei"
 import Room from "./Room"
 import Keyboard from "./Keyboard"
 
@@ -17,6 +17,7 @@ export default function Experience() {
 				<ambientLight />
 				<Room />
 				<Keyboard />
+				<Sky sunPosition={[1, 8, -1]} />
 			</Canvas>
 		</>
 	)

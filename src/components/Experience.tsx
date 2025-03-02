@@ -8,7 +8,15 @@ export default function Experience() {
 		<>
 			<Canvas shadows camera={{ position: [0, 0.5, 3], fov: 30 }}>
 				<color attach="background" args={["#ececec"]} />
-				<OrbitControls />
+				<OrbitControls
+					enablePan={false}
+					minPolarAngle={1.25}
+					maxPolarAngle={1.5}
+					minAzimuthAngle={-0.3}
+					maxAzimuthAngle={0.3}
+					minDistance={1.75}
+					maxDistance={3}
+				/>
 				<pointLight
 					args={["#ffffff", 20, 0]}
 					position={[1, 3, -1]}

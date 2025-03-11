@@ -25,5 +25,5 @@ Typing practice, but make it immersive! This project is a simple typing test dis
 
 ## Tech Stack
 - **Three.js** for the 3D scene.
-- **React** for the UI components and state management.
-- **GSAP** for smooth keyboard animations.
+- **React** for the typingtest.
+- **Blender** for the 3D modelisation.
